@@ -1,20 +1,145 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
-  <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<!-- <h1>Two way data bindings</h1>
 
+Without ng model : <input [value]="username" (input)="username=$event.target.value"/>{{username}}<br><br>
+
+ngmodel using property and event binding : <input [ngModel]="username" (ngModelChange)="username=$event"/>{{username}} <br><br>
+
+Using ([ngModel]) : <input [(ngModel)]="username"/>{{username}} -->
+
+
+<div>
+    <section>
+       <div class="row">
+          <div class="col-md-12 mb-md-3">
+             <button role="button" aria-label="list" (click)="EventNavigate('list')"
+                class="primary-btn float-right">
+             COMMON.LOCATION_EVENTS</button>
+             <button role="button" aria-label="month" (click)="navigateTounAssignedJobs()"
+                class="secondary-btn float-right mr-md-2">{{
+             SCHEME_MANAGEMENT_EVENT.UNASSIGNED_JOBS</button>
+          </div>
+       </div>
+       <!-- heder view -->
+       <header role="header">
+          <div class="row">
+             <div class="col-md-5">
+                <ul>
+                   <li>
+                      <span  class="k-i-arrow-60-left k-icon" (click)="navigateToPrevDate()"></span>
+                   </li>
+                   <li>
+                      <span  class="k-i-arrow-60-right k-icon" (click)="navigateToNextDate()"></span>
+                   </li>
+                   <li>
+                      <kendo-datepicker class="mt-md-1" [value]='value' [format]="'dd/MM/yyyy'"  (valueChange)="dateChange($event)"></kendo-datepicker>
+                   </li>
+                   <li>
+                      <a  class="">{{dateFormat}}</a>
+                   </li>
+                </ul>
+             </div>
+             <div class="col-md-7">
+                <button role="button" aria-label="list" (click)="EventNavigate('list')"
+                   class="scheduler-btn float-right">List</button>
+                <button role="button" aria-label="month" (click)="EventNavigate('month')" 
+                   class="scheduler-btn float-right">Month</button>
+                <button role="button" aria-label="week" (click)="EventNavigate('week')" 
+                   class="scheduler-btn float-right">Week</button>
+                <button role="button" aria-label="day" (click)="EventNavigate('day')"
+                   class="scheduler-btn float-right">Day</button>
+             </div>
+          </div>
+       </header>
+       <!-- heder view End -->
+    </section>
+    <!-- week name header for day start -->
+    <div class="dayMain" *ngIf="days">
+       <section id="section-2">
+          <div class="row border-b">
+             <div class="col border-right py-md-2 pl-md-4 text-center">{{dateFormat}}</div>
+          </div>
+       </section>
+       <section id="day-view">
+          <div class="row border-b" *ngFor="let event of evntData">
+             <div class="col border-right py-md-4 pl-md-4 {{event.color}}" id="box-1">
+                <h6>{{event.ShortDescription}}</h6>
+                <p class="des-text">{{event.LocList + event.LocListDesc}}</p>
+                <div class="action-panel hidden">
+                   <ul>
+                      <li><span class="k-icon k-i-marker-pin-target"></span></li>
+                      <li><span class="k-icon k-i-paste"></span></li>
+                      <li><span class="k-icon k-i-preview"></span></li>
+                      <li><span class="k-icon k-i-edit"></span></li>
+                      <li><span class="k-icon k-i-delete"></span></li>
+                   </ul>
+                </div>
+             </div>
+          </div>
+       </section>
+    </div>
+    <!-- week name header for day end -->
+    <div class="weekMain week-panel-scroll" *ngIf="weeks">
+       <section id="section-2">
+          <div class="row border-b">
+             <div class="col border-right py-md-2 pl-md-4">Mon 06/08</div>
+             <div class="col border-right py-md-2">Tue 07/08</div>
+             <div class="col border-right py-md-2">Wed 08/08</div>
+             <div class="col border-right py-md-2">Thu 09/08</div>
+             <div class="col border-right py-md-2">Fri 10/08</div>
+             <div class="col border-right py-md-2">Sat 11/08</div>
+             <div class="col py-md-2">Sun 12/08</div>
+          </div>
+       </section>
+       <section id="week-view">
+          <div class="row border-b tr">
+             <div class=" col border-right px-md-0 td" id="box-1" *ngFor="let event of evntData">
+                <div class="px-md-0 border-b" *ngFor="let event of evntData">
+                   <div class="{{event.color}} py-md-4 px-md-3" id="box-1">
+                      <h6>{{event.ShortDescription}}</h6>
+                      <p class="des-text">{{event.LocList + event.LocListDesc}}</p>
+                      <div class="action-panel hidden">
+                         <ul>
+                            <li><span class="k-icon k-i-marker-pin-target"></span></li>
+                            <li><span class="k-icon k-i-paste"></span></li>
+                            <li><span class="k-icon k-i-preview"></span></li>
+                            <li><span class="k-icon k-i-edit"></span></li>
+                            <li><span class="k-icon k-i-delete"></span></li>
+                         </ul>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </section>
+    </div>
+    <div class="weekMain" *ngIf="months">
+       <section id="section-2">
+          <div class="row border-b">
+             <div class="col border-right py-md-2 pl-md-4">Monday</div>
+             <div class="col border-right py-md-2">Tue</div>
+             <div class="col border-right py-md-2">Wed</div>
+             <div class="col border-right py-md-2">Thu </div>
+             <div class="col border-right py-md-2">Fri</div>
+             <div class="col border-right py-md-2">Sat </div>
+             <div class="col py-md-2">Sun 12/08</div>
+          </div>
+       </section>
+       <section id="section-3">
+          <div class="row border-b" *ngFor="let event of evntData">
+             <div class="col border-right py-md-4 pl-md-4 {{event.color}}" id="box-1">
+                <h6>{{event.Description}}</h6>
+                <p class="des-text">{{event.data}}</p>
+                <div class="action-panel hidden">
+                   <ul>
+                      <li><span class="k-icon k-i-marker-pin-target"></span></li>
+                      <li><span class="k-icon k-i-paste"></span></li>
+                      <li><span class="k-icon k-i-preview"></span></li>
+                      <li><span class="k-icon k-i-edit"></span></li>
+                      <li><span class="k-icon k-i-delete"></span></li>
+                   </ul>
+                </div>
+             </div>
+          </div>
+       </section>
+    </div>
+ </div>

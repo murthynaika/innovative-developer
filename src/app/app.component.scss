@@ -1,0 +1,225 @@
+@import '../assets/_colors.scss';
+
+ $bg-1: #ccffcc;
+ $bg-2: #ff9999;
+ $bg-3: #ffcc99;
+
+ h6 {
+  font-size: 17px;
+ }
+ header {
+   background: $blue-100;
+   padding-top: .5rem;
+   padding-bottom: 0rem;
+
+   ul {
+     list-style: none;
+     padding-left: 0px;
+    
+     li {
+       display: inline;
+       margin-left: 20px;
+       .k-datepicker {
+         width: 35%;
+       }
+       a{
+        color: $white;
+        text-decoration: none;
+       }
+       .k-icon {
+         font-size: 2vw;
+       }
+     }
+   }
+
+   .scheduler-btn {
+     background: $white;
+     color: $blue-50 !important;
+     font-size: 14px !important;
+     border: 1px solid $blue-50 !important;
+     border-radius: 0.2px !important;
+     padding: 10px 28px !important;
+     cursor: pointer !important;
+     min-width: 110px;
+     max-width: 200px;
+     height: 43px;
+     margin-right: 7px;
+     &:hover {
+       background: $skyblue-100;
+       color: $white !important;
+     }
+   }
+ }
+
+ #section-2 {
+   border: 1px solid $One-grey-4;
+   position: sticky;
+   font-size: 15px;
+   font-weight: 600;
+   padding: 0px 15px;
+
+ }
+
+ #day-view {
+   border: 1px solid $One-grey-4;
+   padding: 0px 15px;
+    .border-b{
+        border-bottom: 1px solid $One-grey-4;
+    }
+   #box-1 {
+     &:hover .hidden {
+       display: block;
+     }
+
+     .hidden {
+       display: none;
+     }
+   }
+   .hidden {
+    display: none;
+  }
+
+   .bg-lime {
+     background: $bg-1;
+   }
+
+   .bg-pink {
+     background: $bg-2;
+   }
+
+   .bg-yellow {
+     background: $bg-3;
+   }
+
+   h6 {
+     white-space: nowrap;
+     overflow: hidden !important;
+     text-overflow: ellipsis;
+     margin-bottom: 0px;
+     margin-top: 1.5rem;
+   }
+
+   .des-text {
+     font-size: 13px;
+     white-space: nowrap;
+     overflow: hidden !important;
+     text-overflow: ellipsis;
+   }
+
+   .action-panel {
+     position: absolute;
+     top: 0px;
+     background-color: rgba(255, 255, 255, 0.7);
+     width: 100%;
+     left: 0;
+     height: 30px;
+
+     ul {
+       list-style: none;
+       padding: 0;
+       float: right;
+       margin-right: 19px;
+
+       li {
+         display: inline;
+         padding-left: 15px;
+
+         span {
+           font-size: 18px;
+           color: $black;
+         }
+       }
+     }
+   }
+ }
+
+ .week-panel-scroll{
+  height: 500px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+ }
+ #week-view {
+  border: 1px solid $One-grey-4;
+  padding: 0px 15px;
+  background: $white;
+  .week-box{
+    width: 15%;
+    border-right: 1px solid $One-grey-4 !important;
+  }
+  .tr:nth-child(odd) .td:nth-child(even), .tr:nth-child(even) .td:nth-child(odd) {
+    background: $One-grey-5;
+  }
+  
+  
+   .border-b{
+       border-bottom: 1px solid $One-grey-4;
+   }
+  #box-1 {
+    &:hover .hidden {
+      display: block;
+    }
+
+    .hidden {
+      display: none;
+    }
+  }
+  .hidden {
+   display: none;
+ }
+
+  .bg-lime {
+    background: $bg-1;
+  }
+
+  .bg-pink {
+    background: $bg-2;
+  }
+
+  .bg-yellow {
+    background: $bg-3;
+  }
+
+  h6 {
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    margin-bottom: 0px;
+    margin-top: 1.5rem;
+  }
+
+  .des-text {
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    width: 158px;
+  }
+
+  .action-panel {
+    position: absolute;
+    top: 0px;
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 100%;
+    left: 0;
+    height: 30px;
+    
+
+    ul {
+      list-style: none;
+      padding: 0;
+      float: right;
+      margin-right: 19px;
+
+      li {
+        display: inline;
+        padding-left: 11px;
+
+        span {
+          font-size: 18px;
+          color: $black;
+        }
+      }
+    }
+  }
+}
+
